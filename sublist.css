@@ -7,7 +7,44 @@
     padding-top: 11%;
     font-family: 'Inter', sans-serif;
   }
+/* Navbar----- */
+#navbar {
+    position: fixed; 
+    left: 0;
+    height: 100vh;
+    width: 100px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
 
+  #navbar li {
+    list-style: none;
+    width: 100%;
+  }
+
+  #navbar li div {
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+
+  #navbar li div:hover {
+    background-color: #d6ddff; /* Hellblau beim Hover */
+  }
+
+  #isactiv {
+    background-color: #94b9ff; /* Blau beim Klicken */
+    color: white;
+  }
+#navbar img {
+    width: 32px;
+}
+/* ------------ */
   .farbverlaufnav {
     width: 100%;
     height: 10%;
@@ -26,20 +63,29 @@
   }
 
   .main-content {
-      margin:20px;
+    margin-left: 100px;
+    margin-right: 100px;
+    border: 1px solid #000000; /* Kurzform für Farbe, Stil und Breite */
     padding: 20px;
-    background-color: aqua;
+    min-height: 50%;
+  
   }
 
   .row {
     display: flex;
-    background-color: #ffcdfa;
+    
     align-items: center;
     gap: 20px;
     margin-bottom: 15px;
     flex-wrap: wrap;
+    justify-content: space-between;
   }
-
+.thingsOnTheRightSide{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 10px;
+}
   .row2 {
       background-color: #94b9ff;
     display: flex;
@@ -89,6 +135,8 @@ margin-left: 5px;
 background-color: #94b9ff;
 border: 0ch;
 border-radius: 1cap;
+height: 60%;
+
 }
 .plusButton{
 border: 0;
