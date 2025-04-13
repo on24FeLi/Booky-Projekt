@@ -23,14 +23,81 @@
     <div class="row">
       <h1>SubListe</h1>
       <div class="thingsontheRightSide"><button class="randomButton">zufälliges Buch auswählen <img src="./images/zufallig.png" alt="random Icon"></button>
-      <button  class="plusButton"><img src="./images/add.png" alt=""></button>
+        <button class="plusButton" id="openFormBtn"><img src="./images/add.png" alt=""></button>
       <p>Total: 0</p></div>
       
     </div>
 
     <div class="row2">
       <button class="plusButton"><img src="./images/filter.png" alt="filter" height="20"></button>
-
+<div id="floatingForm" class="floating-form hidden">
+<form action="">
+  <div class="book-name-row">
+    <h2 >Name des Buches:</h2>
+    <input type="text" id="bookName" name="bookName">
+  </div>
+  <h2>Genre:</h2>
+  <div class="genre-columns">
+    <div class="genre-column">
+      <h3>Spannung</h3>
+      <input type="checkbox" id="krimi" name="krimi" value="genreKrimi">
+      <label for="krimi"> Krimi</label><br>
+  
+      <input type="checkbox" id="thriller" name="thriller" value="genreThriller">
+      <label for="thriller"> Thriller</label><br>
+  
+      <input type="checkbox" id="mystery" name="mystery" value="genreMystery">
+      <label for="mystery"> Mystery</label><br>
+  
+      <input type="checkbox" id="horror" name="horror" value="genreHorror">
+      <label for="horror"> Horror</label><br>
+  
+      <input type="checkbox" id="truecrime" name="truecrime" value="genreTrueCrime">
+      <label for="truecrime"> True Crime</label><br>
+  
+      <h3>Liebe, Leben & Emotion</h3>
+      <input type="checkbox" id="liebe" name="liebe" value="genreLiebe">
+      <label for="liebe"> Liebesroman</label><br>
+      <h3>Humor</h3>
+      <input type="checkbox" id="humor" name="humor" value="genreHumor">
+      <label for="humor"> Humor / Komödie</label><br>
+      <h3>Sachbuch</h3>
+      <input type="checkbox" id="biografie" name="biografie" value="genreBiografie">
+      <label for="biografie"> Sachbuch</label><br>
+    </div>
+    <div class="genre-column">
+      <h3>Fantasy & Science-Fiction</h3>
+      <input type="checkbox" id="fantasy" name="fantasy" value="genreFantasy">
+      <label for="fantasy"> Fantasy</label><br>
+  
+      <input type="checkbox" id="scifi" name="scifi" value="genreSciFi">
+      <label for="scifi"> Science-Fiction</label><br>
+  
+      <input type="checkbox" id="dystopie" name="dystopie" value="genreDystopie">
+      <label for="dystopie"> Dystopie/Utopie</label><br>
+  
+      <h3>Abenteuer & Historisches</h3>
+      <input type="checkbox" id="roman" name="roman" value="genreRoman">
+      <label for="roman"> Roman</label><br>
+      <h3>Kinder- und Jugendbuch</h3>
+      <input type="checkbox" id="kinderbuch" name="kinderbuch" value="genreKinderbuch">
+      <label for="kinderbuch"> Kinderbuch</label><br>
+  
+      <input type="checkbox" id="jugendbuch" name="jugendbuch" value="genreJugendbuch">
+      <label for="jugendbuch"> Jugendbuch</label><br>
+  
+      <input type="checkbox" id="ya" name="ya" value="genreYA">
+      <label for="ya"> Young Adult (YA)</label><br>
+  
+      <input type="checkbox" id="newadult" name="newadult" value="genreNewAdult">
+      <label for="newadult"> New Adult</label><br>
+    
+    </div>
+  </div>
+  <p></p>
+  <input class="addBook" type="submit" value="Buch hinzufügen">
+</form>
+</div>
       <div class="search-container">
         <input type="text" placeholder="Suchen..." />
         <img src="./images/suche.png" alt="suchicon">
@@ -39,5 +106,6 @@
 
     <p>liste</p>
   </div>
+  <script src="sublist.js"></script>
 </body>
 </html>
