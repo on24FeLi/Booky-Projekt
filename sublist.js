@@ -20,6 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const SUB_BOOK_LIST_FORM_NAME_EL = document.querySelector('#bookName');
   const SUBLIST_EL = document.querySelector('#sublist');
   let bookList = []
+  const randomButton = document.getElementById("randomButton");
+ // Random Button-----------
+    randomButton.addEventListener("click", () => {
+    const randomIndex = Math.floor(Math.random() * bookList.length);
+    const selectedBook = bookList[randomIndex].bookName;
+    alert(`Als nächstes könntest du "${selectedBook}" lesen!`);
+    });
   const storedList = localStorage.getItem('bookList');
   if (storedList) {
     bookList = JSON.parse(storedList);
@@ -52,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     SUBLIST_EL.innerHTML ="";
     //fill
     bookList.forEach((bookListItem, index) => {
-     
+     document.getElementById('totalCount').innerText = `Total: ${bookList.length}`;
      
       const LI_ELEMENT = document.createElement('LI');
       LI_ELEMENT.innerHTML = `
@@ -71,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.querySelectorAll('.delete-btn').forEach(button => {
       button.addEventListener('click', (e) => {
-        const indexToDelete = e.target.getAttribute('data-index');
+        const indexToDelete = e.currentTarget.getAttribute('data-index');
         bookList.splice(indexToDelete, 1); // Löschen aus dem Array
         saveToLocalStorage();              // Speichern
         renderBookList();                  // Neu rendern

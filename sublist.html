@@ -22,14 +22,36 @@
   <div class="main-content">
     <div class="row">
       <h1>SubListe</h1>
-      <div class="thingsontheRightSide"><button class="randomButton">zufälliges Buch auswählen <img src="./images/zufallig.png" alt="random Icon"></button>
+      <div class="thingsontheRightSide"><button id="randomButton">zufälliges Buch auswählen <img src="./images/zufallig.png" alt="random Icon"></button>
         <button class="plusButton" id="openFormBtn"><img src="./images/add.png" alt=""></button>
-      <p>Total: 0</p></div>
+      <p  id="totalCount">Total: 0</p></div>
       
     </div>
 
     <div class="row2">
       <button class="plusButton"><img src="./images/filter.png" alt="filter" height="20"></button>
+      <div id="filterPopup" class="filter-popup hidden">
+       <h2>Filtern</h2>
+        <div class="filter-options">
+         <label for="genreSelect">Nach Genre filtern:</label>
+          <select id="genreSelect">
+            <option value="">Alle Genres</option>
+            <option value="Krimi">Krimi</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Liebesroman">Liebesroman</option>
+      <!-- Weitere Genres hinzufügen -->
+          </select>
+
+          <label for="sortSelect">Sortierung:</label>
+          <select id="sortSelect">
+            <option value="">Keine</option>
+            <option value="az">A–Z</option>
+            <option value="za">Z–A</option>
+          </select>
+         <button id="applyFilterBtn">Filter anwenden</button>
+        </div>
+      </div>
 <div id="floatingForm" class="floating-form hidden">
 <form action="">
   <div class="book-name-row">
@@ -109,3 +131,4 @@
   <script src="sublist.js"></script>
 </body>
 </html>
+
