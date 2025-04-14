@@ -38,7 +38,7 @@
   }
 
   #isactiv {
-    background-color: #94b9ff; /* Blau beim Klicken */
+    background-color: #9dafff; /* Blau beim Klicken */
     color: white;
   }
 #navbar img {
@@ -87,10 +87,11 @@
     padding-right: 10px;
 }
   .row2 {
-      background-color: #94b9ff;
+      background-color: #9dafff;
     display: flex;
     align-items: center;
     gap: 15px;
+    padding: 10px;
     flex-wrap: wrap;
   }
 
@@ -132,7 +133,7 @@ vertical-align: middle;
 margin-left: 5px;   
 }
 .randomButton{
-background-color: #94b9ff;
+background-color: #9dafff;
 border: 0ch;
 border-radius: 1cap;
 height: 60%;
@@ -195,4 +196,45 @@ h3{
 
 .hidden {
   display: none;
+}
+.light-bg{
+  background-color:#b0befe;
+  padding: 20px;
+  font-weight: bold;
+}
+
+.lightdark-bg{
+  background-color: #9dafff;
+  padding: 20px;
+  font-weight: bold;
+
+}
+ul{
+  margin:0; 
+  padding:0px;
+  list-style:none;
+}
+ul li small{
+  padding-right: 10px;
+}
+.book-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.book-title, .book-genre {
+  text-align: left;
+  flex: 1;
+  padding: 0 10px;
+}
+
+.book-title {
+  font-weight: bold;
+}
+
+.book-genre {
+  border-left: 2px solid black;
+  margin-left: 400px;
 }
