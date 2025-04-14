@@ -20,7 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const SUB_BOOK_LIST_FORM_NAME_EL = document.querySelector('#bookName');
   const SUBLIST_EL = document.querySelector('#sublist');
   let bookList = []
-
+  const storedList = localStorage.getItem('bookList');
+  if (storedList) {
+    bookList = JSON.parse(storedList);
+    renderBookList();
+  }
   SUB_BOOK_LIST_FORM_EL.addEventListener('submit', processSubBookListSubmission);
 
 
@@ -34,10 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookItem = {bookName: bookName, genres: checkedGenres,isDone:false }
     
     bookList.push(bookItem);
+    saveToLocalStorage();
     renderBookList();
   }
 
-
+  function saveToLocalStorage() {
+    localStorage.setItem('bookList', JSON.stringify(bookList));
+  }
 
 
   function renderBookList () { 

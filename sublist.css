@@ -235,6 +235,7 @@ ul li small{
 }
 
 .book-genre {
+  font-weight:normal;
   border-left: 2px solid black;
-  margin-left: 400px;
+  margin-left: 51%;
 }
