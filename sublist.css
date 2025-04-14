@@ -239,3 +239,9 @@ ul li small{
   border-left: 2px solid black;
   margin-left: 51%;
 }
+.delete-btn{
+background-color:transparent;
+border: 0ch;
+border-radius: 1cap;
+height: 10%;
+}

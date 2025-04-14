@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="book-row">
         <div class="book-title">${bookListItem.bookName}</div>
         <div class="book-genre">Genre: ${bookListItem.genres.join(', ') || '—'}</div>
+           <button class="delete-btn" data-index="${index}"><img src="./images/delete.png" alt=""></button>
       </div>
     `;
       if (index % 2 === 0) {
@@ -68,5 +69,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       SUBLIST_EL.appendChild(LI_ELEMENT);
     });
+    document.querySelectorAll('.delete-btn').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const indexToDelete = e.target.getAttribute('data-index');
+        bookList.splice(indexToDelete, 1); // Löschen aus dem Array
+        saveToLocalStorage();              // Speichern
+        renderBookList();                  // Neu rendern
+      });
+    });
   }
 });
+
+
