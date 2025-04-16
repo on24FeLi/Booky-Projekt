@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   SUB_BOOK_LIST_FORM_EL.addEventListener(
     "submit",
-    processSubBookListSubmission
+    processSubBookListSubmission()
   );
 
   function processSubBookListSubmission(e) {
@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       SUBLIST_EL.appendChild(LI_ELEMENT);
     });
+    
     document.querySelectorAll(".delete-btn").forEach((button) => {
       button.addEventListener("click", (e) => {
         const indexToDelete = e.currentTarget.getAttribute("data-index");

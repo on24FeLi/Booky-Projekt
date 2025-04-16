@@ -155,15 +155,21 @@ h3 {
 .book-name-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 1em;
+  gap: 1em;
 }
+
+.book-name-row label {
+  min-width: 180px; /* gleichmäßige Breite für alle Labels */
+  font-weight: bold;
+}
+
 .book-name-row input {
-  padding: 8px 35px 8px 10px;
-  font-size: 1rem;
-  background-color: #d6ddff;
-  border: 1;
-  border-radius: 1cap;
+  flex: 1;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  background-color: #e3e7ff;
 }
 .addBook {
   padding: 4px 20px 4px 20px;
