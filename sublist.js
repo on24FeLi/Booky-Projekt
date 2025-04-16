@@ -10,6 +10,17 @@ document.addEventListener("keydown", function (e) {
     formBox.classList.add("hidden");
   }
 });
+const openFilterBtn = document.getElementById("openFilterBtn");
+const formFilterBox = document.getElementById("filterPopup");
+openFilterBtn.addEventListener("click", (e) => {
+  e.preventDefault(); // Verhindert eventuelles Reload-Verhalten
+  formFilterBox.classList.toggle("hidden");
+});
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    formFilterBox.classList.add("hidden");
+  }
+});
 // --------------------------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -105,6 +116,35 @@ document.addEventListener("DOMContentLoaded", () => {
     bookList.bookName.toLowerCase().includes(searchTerm)
   );
   console.log(filteredBooks)
+  renderBookList(filteredBooks);
+});
+
+//Filter
+const genreSelect = document.getElementById("genreSelect");
+const sortSelect = document.getElementById("sortSelect");
+const applyFilterBtn = document.getElementById("applyFilterBtn");
+
+applyFilterBtn.addEventListener("click", () => {
+  const selectedGenre = genreSelect.value;
+  const selectedSort = sortSelect.value;
+
+  let filteredBooks = [...bookList]; 
+
+
+  if (selectedGenre !== "") {
+    filteredBooks = filteredBooks.filter((book) =>
+      book.genres.includes(selectedGenre)
+    );
+  }
+  if (selectedSort === "az") {
+    filteredBooks.sort((a, b) =>
+      a.bookName.localeCompare(b.bookName, 'de', { sensitivity: 'base' })
+    );
+  } else if (selectedSort === "za") {
+    filteredBooks.sort((a, b) =>
+      b.bookName.localeCompare(a.bookName, 'de', { sensitivity: 'base' })
+    );
+  }
   renderBookList(filteredBooks);
 });
 });
