@@ -43,6 +43,13 @@
     </div>
 
     <div class="main-content">
+        <div id="weekPopup" class="hidden popup-overlay">
+            <div class="popup-content">
+              <h2>In der nächsten Zeit:</h2>
+              <ul id="popupBookList"></ul>
+              <button onclick="document.getElementById('weekPopup').classList.add('hidden')">Schließen</button>
+            </div>
+          </div>
       <div class="row">
         <h1>Wunschliste</h1>
         <div class="thingsontheRightSide">
@@ -86,13 +93,17 @@
               <option value="">Keine</option>
               <option value="az">A–Z</option>
               <option value="za">Z–A</option>
+              <option value="price-asc">Preis aufsteigend</option>
+<option value="price-desc">Preis absteigend</option>
+<option value="date-asc">Erscheinungsdatum aufsteigend</option>
+<option value="date-desc">Erscheinungsdatum absteigend</option>
             </select>
             <button id="applyFilterBtn">Filter anwenden</button>
           </div>
         </div>
 
         <div id="floatingForm" class="floating-form hidden">
-          <form action="">
+          <form   id="wishForm">
             <div class="book-name-row">
               <label for="book_Name">Name des Buches:</label>
               <input type="text" id="book_Name" name="book_Name" />

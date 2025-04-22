@@ -1,5 +1,7 @@
 const openBtn = document.getElementById("openFormBtn");
 const formBox = document.getElementById("floatingForm");
+const openFilterBtn = document.getElementById("openFilterBtn");
+const formFilterBox = document.getElementById("filterPopup");
 openBtn.addEventListener("click", (e) => {
   e.preventDefault();
   formBox.classList.toggle("hidden");
@@ -10,8 +12,6 @@ document.addEventListener("keydown", function (e) {
   }
 });
 // Öffnen & Schließen des Filtermenüs
-const openFilterBtn = document.getElementById("openFilterBtn");
-const formFilterBox = document.getElementById("filterPopup");
 openFilterBtn.addEventListener("click", (e) => {
   e.preventDefault();
   formFilterBox.classList.toggle("hidden");
@@ -26,18 +26,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const WISH_LIST_FORM_EL = document.querySelector("#floatingForm");
   const WISH_LIST_FORM_NAME_EL = document.querySelector("#book_Name");
   const WISH_LIST_FORM_PREIS_EL = document.querySelector("#bookPreis");
-  const WISH_LIST_FORM_ERSCHEINUNGSDATUM_EL =
-    document.querySelector("#bookPublish");
+  const WISH_LIST_FORM_ERSCHEINUNGSDATUM_EL = document.querySelector("#bookPublish");
   const WISHLIST_EL = document.querySelector("#wishlist");
+  const WISH_FORM = document.querySelector("#wishForm"); 
+  const storedList = localStorage.getItem("wishList");
   let wishList = [];
 
   WISH_LIST_FORM_EL.addEventListener("submit", processWishListSubmission);
   //Sachen aus dem Local Storage holen
-  const storedList = localStorage.getItem("wishList");
+ 
   if (storedList) {
     wishList = JSON.parse(storedList);
-    console.log("console")
     renderWishList();
+    showUpcomingBooksPopup();
   }
   function processWishListSubmission(e) {
     e.preventDefault();
@@ -59,6 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
     wishList.push(WISH_LIST_ITEM);
     saveToLocalStorage();
     renderWishList();
+    WISH_FORM.reset();
+    formBox.classList.add("hidden");
   }
   function saveToLocalStorage() {
     localStorage.setItem("wishList", JSON.stringify(wishList));
@@ -72,12 +75,18 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById(
         "totalCount"
       ).innerText = `Total: ${wishList.length}`;
+      let totalPrice = filteredList.reduce((sum, book) => sum + book.bookPrice, 0);
+document.getElementById("totalPrice").innerText = `Preis: ${totalPrice.toFixed(2)}€`;
       const LI_WISH_ELEMENT = document.createElement("LI");
       LI_WISH_ELEMENT.innerHTML = `
         <div class="book-row">
         <div class="book-title">${WISH_LIST_ITEM.bookName}</div>
-        <div class="book-price">${WISH_LIST_ITEM.bookPrice}</div>
-        <div class="book-publish">${WISH_LIST_ITEM.bookPublishDate}</div>
+        <div class="book-price">${WISH_LIST_ITEM.bookPrice + "€"}</div>
+      <div class="book-publish">
+      ${new Date(WISH_LIST_ITEM.bookPublishDate) < new Date() 
+        ? '<img src="./images/DatumInVergangenheit.png" alt="vergangen" title="Bereits erschienen" style="height: 16px; margin-left: 5px;" />' 
+        : new Date(WISH_LIST_ITEM.bookPublishDate).toLocaleDateString("de-DE")}
+</div>
         <button class="delete-btn" data-index="${index}">
         <img src="./images/delete.png" alt="">
         </button>
@@ -132,7 +141,43 @@ document.addEventListener("DOMContentLoaded", () => {
       filteredBooks.sort((a, b) =>
         b.bookName.localeCompare(a.bookName, "de", { sensitivity: "base" })
       );
+    } else if (selectedSort === "price-asc") {
+      filteredBooks.sort((a, b) => a.bookPrice - b.bookPrice);
+    } else if (selectedSort === "price-desc") {
+      filteredBooks.sort((a, b) => b.bookPrice - a.bookPrice);
+    }
+    else if (selectedSort === "date-asc") {
+      filteredBooks.sort((a, b) => new Date(a.bookPublishDate) - new Date(b.bookPublishDate));
+    } else if (selectedSort === "date-desc") {
+      filteredBooks.sort((a, b) => new Date(b.bookPublishDate) - new Date(a.bookPublishDate));
     }
     renderWishList(filteredBooks);
   });
+  function showUpcomingBooksPopup() {
+    const today = new Date();
+    const nextWeek = new Date();
+    nextWeek.setDate(today.getDate() + 7);
+  
+    const upcomingBooks = wishList.filter(book => {
+      const pubDate = new Date(book.bookPublishDate);
+      return pubDate >= today && pubDate <= nextWeek;
+    });
+  
+    if (upcomingBooks.length > 0) {
+      const popupList = document.getElementById("popupBookList");
+      popupList.innerHTML = "";
+  
+      upcomingBooks.forEach(book => {
+        const pubDate = new Date(book.bookPublishDate);
+        const diffTime = pubDate - today;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  
+        const li = document.createElement("li");
+        li.textContent = `${book.bookName} – erscheint in ${diffDays} Tag${diffDays === 1 ? '' : 'en'}`;
+        popupList.appendChild(li);
+      });
+  
+      document.getElementById("weekPopup").classList.remove("hidden");
+    }
+  }
 });

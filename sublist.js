@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const SUB_BOOK_LIST_FORM_EL = document.querySelector("#floatingForm");
   const SUB_BOOK_LIST_FORM_NAME_EL = document.querySelector("#bookName");
   const SUBLIST_EL = document.querySelector("#sublist");
+  const SUB_FORM = document.querySelector("#subForm");
   let bookList = [];
   const randomButton = document.getElementById("randomButton");
   // Random Button-----------
@@ -43,10 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  SUB_BOOK_LIST_FORM_EL.addEventListener(
-    "submit",
-    processSubBookListSubmission()
-  );
+  SUB_BOOK_LIST_FORM_EL.addEventListener("submit", processSubBookListSubmission);
 
   function processSubBookListSubmission(e) {
     e.preventDefault();
@@ -98,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       SUBLIST_EL.appendChild(LI_ELEMENT);
     });
-    
+
     document.querySelectorAll(".delete-btn").forEach((button) => {
       button.addEventListener("click", (e) => {
         const indexToDelete = e.currentTarget.getAttribute("data-index");
@@ -118,6 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   console.log(filteredBooks)
   renderBookList(filteredBooks);
+  SUB_FORM.reset();
+  formBox.classList.add("hidden");
 });
 
 //Filter
