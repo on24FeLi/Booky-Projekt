@@ -1,4 +1,6 @@
+import { renderNavbar } from './navbar.js';
 //Formular
+
 const OPEN_BTN = document.getElementById("openFormBtn");
 const FORM_BOX = document.getElementById("floatingForm");
 const OPEN_FILTER_BTN = document.getElementById("openFilterBtn");
@@ -143,4 +145,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     renderBookList(FILTERED_BOOKS);
   });
+  renderNavbar();
 });

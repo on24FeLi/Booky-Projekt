@@ -42,7 +42,7 @@
     background-color: #9dafff; /* Blau beim Klicken */
     color: white;
   }
-  #navbar img {
+  #navbar li img {
     width: 32px;
   }
   /* ------------ */
